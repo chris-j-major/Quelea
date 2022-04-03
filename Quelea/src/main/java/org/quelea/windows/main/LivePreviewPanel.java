@@ -17,8 +17,7 @@
  */
 package org.quelea.windows.main;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.Node;
@@ -84,6 +83,7 @@ public abstract class LivePreviewPanel extends BorderPane {
     private final WebPanel webPanel = new WebPanel();
     private final ImageGroupPanel imageGroupPanel = new ImageGroupPanel(this);
     private final QuickEditDialog quickEditDialog = new QuickEditDialog();
+    private int currentIndex = 0;
 
     /**
      * Create the live preview panel, common superclass of live and preview
@@ -368,6 +368,8 @@ public abstract class LivePreviewPanel extends BorderPane {
         if (!(this.displayable instanceof TextDisplayable && displayable instanceof TextDisplayable)) {
             lyricsPanel.removeCurrentDisplayable();
         }
+        listeners.forEach( listener -> listener.updateDisplayable(displayable,index,stateMap) );
+        this.currentIndex = index;
 
         QueleaApp.get().getMainWindow().getMainPanel().getSchedulePanel().getScheduleList().getListView().refresh();
 
@@ -538,4 +540,26 @@ public abstract class LivePreviewPanel extends BorderPane {
     public WebPanel getWebPanel() {
         return webPanel;
     }
+
+
+    private List<DisplayPanelListener> listeners = new LinkedList<DisplayPanelListener>();
+    private Map<String,Boolean> stateMap = new HashMap<String,Boolean>();
+
+    public void addDisplayableListener(DisplayPanelListener listener){
+        listeners.add(listener);
+    }
+
+    public void removeDisplayableListener(DisplayPanelListener listener){
+        listeners.remove(listener);
+    }
+
+
+    void updateState(String key, boolean selected) {
+        if ( stateMap.get(key) != selected ){
+            stateMap.put(key,selected);
+            listeners.forEach( listener -> listener.updateDisplayable(displayable,currentIndex,stateMap) );
+
+        }
+    }
+
 }

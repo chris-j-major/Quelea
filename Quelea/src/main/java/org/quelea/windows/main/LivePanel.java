@@ -190,6 +190,7 @@ public class LivePanel extends LivePreviewPanel {
                 for (DisplayCanvas canvas : canvases) {
                     canvas.setLogoDisplaying(logo.isSelected());
                 }
+                updateState("logo",logo.isSelected());
             }
         });
         header.getItems().add(logo);
@@ -208,6 +209,7 @@ public class LivePanel extends LivePreviewPanel {
                     canvas.setBlacked(black.isSelected());
                 }
                 QueleaApp.get().getMainWindow().getMainPanel().getLivePanel().getLyricsPanel().requestFocus();
+                updateState("black",black.isSelected());
             }
         });
         header.getItems().add(black);
@@ -228,6 +230,7 @@ public class LivePanel extends LivePreviewPanel {
                 }
             }
             QueleaApp.get().getMainWindow().getMainPanel().getLivePanel().getLyricsPanel().requestFocus();
+            updateState("clear",clear.isSelected());
         });
         header.getItems().add(clear);
         ImageView hideIV = new ImageView(new Image(QueleaProperties.get().getUseDarkTheme() ? "file:icons/cross-light.png" : "file:icons/cross.png"));
@@ -276,6 +279,7 @@ public class LivePanel extends LivePreviewPanel {
                 }
                 VLCWindow.INSTANCE.refreshPosition();
 //                VLCWindow.INSTANCE.setHideButton(hide.isSelected());
+                updateState("hidden",hide.isSelected());
             }
         });
         //header.getItems().add(hide);
