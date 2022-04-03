@@ -542,8 +542,8 @@ public abstract class LivePreviewPanel extends BorderPane {
     }
 
 
-    private List<DisplayPanelListener> listeners = new LinkedList<DisplayPanelListener>();
-    private Map<String,Boolean> stateMap = new HashMap<String,Boolean>();
+    private List<DisplayPanelListener> listeners = new LinkedList<>();
+    private Map<String,Boolean> stateMap = new HashMap<>();
 
     public void addDisplayableListener(DisplayPanelListener listener){
         listeners.add(listener);
@@ -553,12 +553,10 @@ public abstract class LivePreviewPanel extends BorderPane {
         listeners.remove(listener);
     }
 
-
-    void updateState(String key, boolean selected) {
-        if ( stateMap.get(key) != selected ){
+    protected void updateState(String key, boolean selected) {
+        if ( stateMap.getOrDefault(key,false) != selected ){
             stateMap.put(key,selected);
             listeners.forEach( listener -> listener.updateDisplayable(displayable,currentIndex,stateMap) );
-
         }
     }
 

@@ -50,12 +50,14 @@ public class OBSWebSocket implements DisplayPanelListener {
 
     @Override
     public void updateDisplayable(Displayable displayable, int index, Map<String, Boolean> stateMap) {
-        ensureClientIsActive();
-        if (stateMap.getOrDefault("black",false)){
-            desired = new OBSState("camera");
-        }else if (displayable instanceof TextDisplayable) {
-            desired = new OBSState("song");
+        synchronized (this) {
+            if (stateMap.getOrDefault("black", false)) {
+                desired = new OBSState("camera");
+            } else if (displayable instanceof TextDisplayable) {
+                desired = new OBSState("song");
+            }
         }
+        ensureClientIsActive();
     }
 
     public void connectLost(OBSWebSocketClient obsWebSocketClient) {
@@ -64,11 +66,12 @@ public class OBSWebSocket implements DisplayPanelListener {
         }
     }
 
-    private class OBSState {
-        private final String scene;
-
-        public OBSState(String scene) {
-            this.scene = scene;
+    public OBSState getDesiredState() {
+        OBSState target;
+        synchronized (this) {
+            target = desired;
+            desired = null;
         }
+        return target;
     }
 }
