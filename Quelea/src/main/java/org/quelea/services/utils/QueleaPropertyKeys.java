@@ -138,5 +138,7 @@ public class QueleaPropertyKeys {
     public static final String slideTransitionOutDurationKey = "slide.transition.duration.out";
     public static final String useDefaultTranslation = "use.default.translation";
     public static final String defaultTranslationName = "default.translation.name";
-
+    public static final String useObsKey = "obs.use";
+    public static final String obsWebSocketURLKey = "obs.websocket.url";
+    public static final String obsWebSocketPasswordKey = "obs.websocket.password";
 }

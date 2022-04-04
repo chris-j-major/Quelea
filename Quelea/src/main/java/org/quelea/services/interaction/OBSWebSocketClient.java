@@ -17,10 +17,10 @@ public class OBSWebSocketClient  {
     private boolean connectionOk = false;
     private final TrackedOBSState currentState = new TrackedOBSState();
 
-    public OBSWebSocketClient(URI serverURI, OBSWebSocket obsWebSocket, String password){
+    public OBSWebSocketClient(String serverURI, OBSWebSocket obsWebSocket, String password){
         LOGGER.info("Starting OBS connection");
         this.obs = obsWebSocket;
-        this.controller = new OBSRemoteController("ws://localhost:4444",true,password,false);
+        this.controller = new OBSRemoteController(serverURI,true,password,false);
         this.controller.registerCloseCallback( (int statusCode, String reason)->{
             LOGGER.info("OSB Connection lost "+statusCode+"  "+reason);
             connectionOk = false;

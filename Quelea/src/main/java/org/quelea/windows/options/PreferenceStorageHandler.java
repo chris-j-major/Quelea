@@ -297,6 +297,15 @@ public class PreferenceStorageHandler implements StorageHandler {
             case QueleaPropertyKeys.defaultSongDbUpdateKey:
                 QueleaProperties.get().setDefaultSongDBUpdate(!Boolean.parseBoolean(object.toString()));
                 break;
+            case QueleaPropertyKeys.useObsKey:
+                QueleaProperties.get().setUseObsConnection(Boolean.parseBoolean(object.toString()));
+                break;
+            case QueleaPropertyKeys.obsWebSocketURLKey:
+                QueleaProperties.get().setObsWebSocketURL(object.toString());
+                break;
+            case QueleaPropertyKeys.obsWebSocketPasswordKey:
+                QueleaProperties.get().setObsWebSocketPassword(object.toString());
+                break;
             default:
                 QueleaProperties.get().setProperty(breadcrumb, object.toString());
         }

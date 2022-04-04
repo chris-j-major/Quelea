@@ -783,3 +783,7 @@ general.text.options=General Text Options
 translation.text.options=Translation Text Options
 use.default.translation.label=Use Default Translation
 translation.name.label=Translation name
+obs.options.heading=OBS Options
+obs.use.label=Enable OBS Websocket integration
+obs.websocket.uri.label=Websocket URL
+obs.websocket.password.label=Websocker password

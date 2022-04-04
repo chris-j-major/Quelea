@@ -69,6 +69,7 @@ public class PreferencesDialog extends Stage {
     private final OptionsStageViewPanel stageViewPanel;
     private final OptionsServerSettingsPanel optionsServerSettingsPanel;
     private final OptionsRecordingPanel recordingPanel;
+    private final OptionsOBSPanel obsPanel;
     private final OptionsImportExportPanel importExportPanel;
     private HashMap<Field, ObservableValue> bindings = new HashMap<>();
     private boolean previousLinkPreviewLiveDividers;
@@ -93,6 +94,7 @@ public class PreferencesDialog extends Stage {
         biblePanel = new OptionsBiblePanel(bindings);
         optionsServerSettingsPanel = new OptionsServerSettingsPanel(bindings);
         recordingPanel = new OptionsRecordingPanel(bindings, hasVLC);
+        obsPanel = new OptionsOBSPanel(bindings);
         importExportPanel = new OptionsImportExportPanel(bindings);
 
         preferencesFx =
@@ -105,6 +107,7 @@ public class PreferencesDialog extends Stage {
                         biblePanel.getBiblesTab(),
                         optionsServerSettingsPanel.getServerTab(),
                         recordingPanel.getRecordingsTab(),
+                        obsPanel.getObsTab(),
                         importExportPanel.getImportExportTab()
                 );
 

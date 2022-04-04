@@ -18,6 +18,7 @@ package org.quelea.services.interaction;
 
 import org.quelea.data.displayable.Displayable;
 import org.quelea.data.displayable.TextDisplayable;
+import org.quelea.services.utils.QueleaProperties;
 import org.quelea.windows.main.DisplayPanelListener;
 
 import java.io.IOException;
@@ -36,15 +37,12 @@ public class OBSWebSocket implements DisplayPanelListener {
     }
 
     private void ensureClientIsActive() {
-        try {
-            if ( activeClient == null ){
-                activeClient = new OBSWebSocketClient(new URI("ws://localhost:4444") , this ,"test" );
-            }else{
-                activeClient.desiredStateChanged();
-            }
-        } catch (URISyntaxException e) {
+        if (!QueleaProperties.get().getUseObsConnection()){
             activeClient = null;
-            e.printStackTrace();
+        }else if ( activeClient == null ){
+            activeClient = new OBSWebSocketClient(QueleaProperties.get().getObsWebSocketURL() , this ,QueleaProperties.get().getObsWebSocketPassword() );
+        }else{
+            activeClient.desiredStateChanged();
         }
     }
 

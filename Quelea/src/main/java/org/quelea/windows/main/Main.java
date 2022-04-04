@@ -334,17 +334,13 @@ public final class Main extends Application {
                         }
                         mainWindow.show();
 
-                        if (true /* QueleaProperties.get().useObsWebSocket()  */) {
-                            LOGGER.log(Level.INFO, "Starting OBS client");
-                            try {
-                                OBSWebSocket obs = new OBSWebSocket();
-                                obs.start();
-                                QueleaApp.get().getMainWindow().getMainPanel().getLivePanel().addDisplayableListener( obs );
-                            } catch (IOException ex) {
-                                LOGGER.log(Level.INFO, "Couldn't create OBS client", ex);
-                            }
-                        } else {
-                            LOGGER.log(Level.INFO, "OBS Client is running");
+                        LOGGER.log(Level.INFO, "Starting OBS client");
+                        try {
+                            OBSWebSocket obs = new OBSWebSocket();
+                            obs.start();
+                            QueleaApp.get().getMainWindow().getMainPanel().getLivePanel().addDisplayableListener( obs );
+                        } catch (IOException ex) {
+                            LOGGER.log(Level.INFO, "Couldn't create OBS client", ex);
                         }
 
                         QueleaApp.get().doneLoading();

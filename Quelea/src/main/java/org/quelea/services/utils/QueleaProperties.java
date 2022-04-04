@@ -2536,4 +2536,21 @@ public final class QueleaProperties extends SortedProperties {
     public void setUseDarkTheme(boolean useDarkTheme) {
         setProperty(darkThemeKey, String.valueOf(useDarkTheme));
     }
+
+    public boolean getUseObsConnection() { return Boolean.parseBoolean(getProperty(useObsKey, "false")); }
+
+    public void setUseObsConnection(boolean useObs) {
+        setProperty(useObsKey, String.valueOf(useObs));
+    }
+
+    public String getObsWebSocketURL() {  return getProperty(obsWebSocketURLKey, "ws:\\\\localhost:444"); }
+    public void setObsWebSocketURL(String webSocketURL) {
+        setProperty(obsWebSocketURLKey, webSocketURL);
+    }
+
+    public String getObsWebSocketPassword() {  return getProperty(obsWebSocketPasswordKey, "quelea"); }
+    public void setObsWebSocketPassword(String password) {
+        setProperty(obsWebSocketPasswordKey, password);
+    }
 }
+
