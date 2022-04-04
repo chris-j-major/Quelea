@@ -15,6 +15,8 @@ plugins {
     id 'com.bmuschko.izpack' version '3.0'
 }
 
+applicationDefaultJvmArgs = ["--add-exports=javafx.graphics/com.sun.javafx.scene=ALL-UNNAMED","--add-exports=javafx.graphics/com.sun.javafx.scene.traversal=ALL-UNNAMED"]
+
 configurations.all {
     resolutionStrategy {
         cacheChangingModulesFor 0, 'seconds'
