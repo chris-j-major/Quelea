@@ -38,7 +38,10 @@ public class OBSWebSocket implements DisplayPanelListener {
 
     private void ensureClientIsActive() {
         if (!QueleaProperties.get().getUseObsConnection()){
-            activeClient = null;
+            if ( activeClient != null ){
+                activeClient.close();
+                activeClient = null;
+            }
         }else if ( activeClient == null ){
             activeClient = new OBSWebSocketClient(QueleaProperties.get().getObsWebSocketURL() , this ,QueleaProperties.get().getObsWebSocketPassword() );
         }else{

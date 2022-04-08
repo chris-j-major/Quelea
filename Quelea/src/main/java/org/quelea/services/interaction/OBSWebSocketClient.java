@@ -4,7 +4,6 @@ import net.twasi.obsremotejava.OBSRemoteController;
 import net.twasi.obsremotejava.requests.GetVersion.GetVersionResponse;
 import org.quelea.services.utils.LoggerUtils;
 
-import java.net.URI;
 import java.util.logging.Logger;
 
 public class OBSWebSocketClient  {
@@ -58,5 +57,10 @@ public class OBSWebSocketClient  {
                 currentState.synchroniseTo( requestedState );
             }
         }
+    }
+
+    public void close() {
+        connectionOk = false;
+        controller.disconnect();
     }
 }

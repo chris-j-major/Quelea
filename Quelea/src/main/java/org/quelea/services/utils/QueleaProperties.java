@@ -1925,7 +1925,6 @@ public final class QueleaProperties extends SortedProperties {
      */
     public void setRecordingsPath(String path) {
         setProperty(recPathKey, path);
-        write();
     }
 
     /**
@@ -2546,11 +2545,13 @@ public final class QueleaProperties extends SortedProperties {
     public String getObsWebSocketURL() {  return getProperty(obsWebSocketURLKey, "ws:\\\\localhost:444"); }
     public void setObsWebSocketURL(String webSocketURL) {
         setProperty(obsWebSocketURLKey, webSocketURL);
+        write();
     }
 
     public String getObsWebSocketPassword() {  return getProperty(obsWebSocketPasswordKey, "quelea"); }
     public void setObsWebSocketPassword(String password) {
         setProperty(obsWebSocketPasswordKey, password);
+        write();
     }
 }
 

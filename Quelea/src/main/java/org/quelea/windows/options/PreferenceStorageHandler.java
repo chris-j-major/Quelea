@@ -386,6 +386,12 @@ public class PreferenceStorageHandler implements StorageHandler {
                     return QueleaProperties.get().getElevantoClientId();
                 case QueleaPropertyKeys.churchCcliNumKey:
                     return QueleaProperties.get().getChurchCcliNum();
+                case QueleaPropertyKeys.useObsKey:
+                    return QueleaProperties.get().getUseObsConnection();
+                case QueleaPropertyKeys.obsWebSocketPasswordKey:
+                    return QueleaProperties.get().getObsWebSocketPassword();
+                case QueleaPropertyKeys.obsWebSocketURLKey:
+                    return QueleaProperties.get().getObsWebSocketURL();
                 default:
                     try {
                         Object object = gson.fromJson(property, Object.class);
