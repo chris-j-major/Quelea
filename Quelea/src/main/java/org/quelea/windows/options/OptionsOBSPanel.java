@@ -22,8 +22,6 @@ public class OptionsOBSPanel {
     private final SimpleBooleanProperty useObsProperty;
     private final SimpleStringProperty passwordProperty;
     private final SimpleStringProperty obsWebSocketURI;
-    //private final StringField websocketUriField;
-    //private final StringField websocketPasswordField;
 
     public OptionsOBSPanel(HashMap<Field, ObservableValue> bindings) {
         this.bindings = bindings;

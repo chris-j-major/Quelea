@@ -42,10 +42,14 @@ public class OBSWebSocket implements DisplayPanelListener {
                 activeClient.close();
                 activeClient = null;
             }
-        }else if ( activeClient == null ){
-            activeClient = new OBSWebSocketClient(QueleaProperties.get().getObsWebSocketURL() , this ,QueleaProperties.get().getObsWebSocketPassword() );
         }else{
-            activeClient.desiredStateChanged();
+            if ( activeClient != null ){
+                boolean success = activeClient.desiredStateChanged();
+                if ( success ){
+                    return;
+                }
+            }
+            activeClient = new OBSWebSocketClient(QueleaProperties.get().getObsWebSocketURL() , this ,QueleaProperties.get().getObsWebSocketPassword() );
         }
     }
 

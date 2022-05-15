@@ -46,16 +46,19 @@ public class OBSWebSocketClient  {
         this.controller.connect();
     }
 
-    public void desiredStateChanged() {
-        checkForStateUpdateRequest();
+    public boolean desiredStateChanged() {
+        return checkForStateUpdateRequest();
     }
 
-    private void checkForStateUpdateRequest() {
+    private boolean checkForStateUpdateRequest() {
         if ( connectionOk ){
             OBSState requestedState = this.obs.getDesiredState();
             if ( requestedState != null ){
                 currentState.synchroniseTo( requestedState );
             }
+            return true;
+        }else{
+            return false;
         }
     }
 

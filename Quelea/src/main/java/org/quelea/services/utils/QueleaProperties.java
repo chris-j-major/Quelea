@@ -2542,7 +2542,7 @@ public final class QueleaProperties extends SortedProperties {
         setProperty(useObsKey, String.valueOf(useObs));
     }
 
-    public String getObsWebSocketURL() {  return getProperty(obsWebSocketURLKey, "ws:\\\\localhost:444"); }
+    public String getObsWebSocketURL() {  return getProperty(obsWebSocketURLKey, "ws://localhost:4444"); }
     public void setObsWebSocketURL(String webSocketURL) {
         setProperty(obsWebSocketURLKey, webSocketURL);
         write();
